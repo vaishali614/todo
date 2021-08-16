@@ -1,0 +1,10 @@
+.carousel .control-dots{
+   margin-left: 600px;
+   margin-bottom: 0px;
+}
+.carousel .control-arrow .control-prev ::after{
+     color: black;
+}
+.business-items::-webkit-scrollbar {
+   display: none;
+}
