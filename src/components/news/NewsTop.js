@@ -19,6 +19,17 @@ const NewsTop = () => {
 
     fetchVideo();
   }, []);
+  
+    useEffect(()=>{
+    const fetchdata=async()=>{
+      let res;
+      type==='video'?res=await axios.get('/appapi/lt/category/videos'):
+      await axios.get('/appapi/lt/category/news');
+      setType(res.data.data);
+    }
+    fetchdata();
+  })
+
 
   return (
     // caraousal
