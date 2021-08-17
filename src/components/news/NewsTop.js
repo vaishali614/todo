@@ -39,6 +39,16 @@ const NewsTop = () => {
            <CarouselContentNews item={item} index={index}/>
        ))}
       </Carousel>
+
+ {/*<Carousel infiniteLoop useKeyboardArrows autoPlay showArrows={true} showThumbs={false} className="carousel">
+
+       {article && content.map((itema,indexa)=>(
+        <CarouselContentNews item={itema} index={indexa} article={article}/>
+       ))}
+       {video && videoT.map((item,index)=>(
+           <CarouselContentNews item={item} index={index} video={video}/>
+       ))}
+       </Carousel>*/}
       
     </div>
   );
