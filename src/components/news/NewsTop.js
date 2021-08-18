@@ -9,6 +9,7 @@ import CarouselContentNews from './CarouselContentNews'
 
 const NewsTop = () => {
   const [videoT, setVideo] = useState([]);
+  const[type,setType]=useState('video');
 
   useEffect(() => {
     const fetchVideo = async () => {
