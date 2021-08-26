@@ -2,18 +2,60 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import NewsBottomItem from './NewsBottomItem';
 
-const NewsBottom = () => {
-  const [content, setContent] = useState([]);
+const NewsBottom = ({path,all,article,video}) => {
+  const [videoT, setVideoT] = useState([]);
+  const [newsT,setNewsT]=useState([]);
+  const [type,setType]=useState([]);
 
-  useEffect(() => {
-    const fetchContent = async () => {
-      const res = await axios.get('/appapi/lt/category/news');
-      setContent(res.data.data.news.splice(0, 3));
-     
-    };
+  const actualPath=window.location.pathname;
+  
+  const articlePath=path.concat('/article');
+  const videoPath=path.concat('/video')
+  
 
-    fetchContent();
-  }, []);
+  
+ 
+  const fetchData=()=>{
+    const video='/appapi/lt/category/videos';
+    const article='/appapi/lt/category/news';
+
+    const getVideos=axios.get(video);
+    const getArticle=axios.get(article);
+    axios.all([getArticle,getVideos]).then(
+      axios.spread((...allData)=>{
+        const allNews=allData[0].data.data.news;
+        const allVideo=allData[1].data.data.video;
+        setVideoT(allVideo);
+        setNewsT(allNews);
+       
+      })
+    )
+  }
+  useEffect(()=>{
+    fetchData();
+    myFunction();
+   
+  },[actualPath]);
+  
+  
+  function myFunction()
+  {
+    let actualPath=window.location.pathname;
+    console.log(actualPath)
+      switch(actualPath){
+        case videoPath:
+          setType(videoT);
+          break;
+        case articlePath:
+          setType(newsT);
+          break;
+        default:
+          setType(newsT)
+          break;
+      }
+  }
+  
+  
 
   return (
     <div className=" newsbottom"
@@ -24,8 +66,8 @@ const NewsBottom = () => {
         overflow: 'scroll'
       }}
     >
-      {content.map((item) => (
-        <NewsBottomItem key={item.n_id} item={item} />
+      {type.map((item,index) => (
+        <NewsBottomItem  item={item} index={index} path={path} type={type} videoT={videoT} newsT={newsT} />
       ))}
     </div>
   );

@@ -6,7 +6,7 @@ import './navbar.css';
 import heading from '../../Images/Assets-LT/heading.jpg';
 import Submenu from './searchbar/Menu/SubMenu/submenu';
 
-const Navbar = ({ business, news, liveshow, home ,article,video}) => {
+const Navbar = ({ business, news, liveshow, home ,path,all,article,video}) => {
   return (
     <div style={{ backgroundColor: 'white' }}>
       <div className="row">
@@ -18,8 +18,11 @@ const Navbar = ({ business, news, liveshow, home ,article,video}) => {
         news={news}
         liveshow={liveshow}
         home={home}
+        path={path}
+        all={all}
         article={article}
         video={video}
+        
       />
       <StoryBar />
     </div>

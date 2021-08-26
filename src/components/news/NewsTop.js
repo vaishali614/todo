@@ -6,51 +6,75 @@ import axios from 'axios';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import CarouselContentNews from './CarouselContentNews'
+import NewsBottom from './NewsBottom';
 
-const NewsTop = () => {
-  const [videoT, setVideo] = useState([]);
-  const[type,setType]=useState('video');
-
-  useEffect(() => {
-    const fetchVideo = async () => {
-      const res = await axios.get('/appapi/lt/category/videos');
-      setVideo(res.data.data.video);
-      
-    };
-
-    fetchVideo();
-  }, []);
+const NewsTop = ({path,all,article,video}) => {
   
-    useEffect(()=>{
-    const fetchdata=async()=>{
-      let res;
-      type==='video'?res=await axios.get('/appapi/lt/category/videos'):
-      await axios.get('/appapi/lt/category/news');
-      setType(res.data.data);
-    }
-    fetchdata();
-  })
+  const [videoT, setVideoT] = useState([]);
+  const [newsT,setNewsT]=useState([]);
+  const [type,setType]=useState([]);
+  
 
+  const actualPath=window.location.pathname;
+  
+  const articlePath=path.concat('/article');
+  const videoPath=path.concat('/video')
+  
 
+  
+ 
+  const fetchData=()=>{
+    const video='/appapi/lt/category/videos';
+    const article='/appapi/lt/category/news';
+
+    const getVideos=axios.get(video);
+    const getArticle=axios.get(article);
+    axios.all([getArticle,getVideos]).then(
+      axios.spread((...allData)=>{
+        const allNews=allData[0].data.data.news;
+        const allVideo=allData[1].data.data.video;
+        setVideoT(allVideo);
+        setNewsT(allNews);
+       
+      })
+    )
+  }
+  useEffect(()=>{
+    fetchData();
+    myFunction();
+   
+  },[actualPath]);
+
+  console.log(videoT);
+  
+  
+  function myFunction()
+  {
+    let actualPath=window.location.pathname;
+    console.log(actualPath)
+      switch(actualPath){
+        case videoPath:
+          setType(videoT);
+          break;
+        case articlePath:
+          setType(newsT);
+          break;
+        default:
+          setType(newsT)
+          break;
+      }
+  }
   return (
-    // caraousal
+    
+  
     <div className="newstop">
+   
     <Carousel infiniteLoop useKeyboardArrows autoPlay showArrows={true} showThumbs={false} className="carousel">
-       {videoT.map((item,index)=>(
-           <CarouselContentNews item={item} index={index}/>
-       ))}
+        {type.map((item,index)=>(
+        <CarouselContentNews item={item} index={index} path={path} type={type} videoT={videoT} newsT={newsT}/>
+        ))}
       </Carousel>
-
- {/*<Carousel infiniteLoop useKeyboardArrows autoPlay showArrows={true} showThumbs={false} className="carousel">
-
-       {article && content.map((itema,indexa)=>(
-        <CarouselContentNews item={itema} index={indexa} article={article}/>
-       ))}
-       {video && videoT.map((item,index)=>(
-           <CarouselContentNews item={item} index={index} video={video}/>
-       ))}
-       </Carousel>*/}
-      
+     
     </div>
   );
 };

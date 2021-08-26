@@ -2,7 +2,8 @@ import NewsTop from './NewsTop';
 import NewsBottom from './NewsBottom';
 import './news.css';
 
-const News = () => {
+const News = ({all,article,video,path}) => {
+  
   return (
     <div
       style={{
@@ -14,8 +15,8 @@ const News = () => {
       <div className='liveheader bullet'>News</div>
       <div className=' border' style={{ border: '1px solid red' }}>
         <div className='container-fluid news '>
-          <NewsTop />
-          <NewsBottom />
+          <NewsTop path={path} all={all} article={article} video={video}/>
+          <NewsBottom path={path} all={all} article={article} video={video}/>
         </div>
       </div>
     </div>

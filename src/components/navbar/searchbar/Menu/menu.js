@@ -2,8 +2,11 @@ import React,{useState,useEffect} from 'react';
 import './menu.css';
 import Submenu from './SubMenu/submenu';
 import axios from 'axios';
+import {Link,useRouteMatch} from "react-router-dom"
+import { Condition } from './SubMenu/submenu';
 
-const menu = ({ business, news, liveshow, home ,search,article,video}) => {
+
+const menu = ({ business, news, liveshow, home ,search,path,article,all,video}) => {
 
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -29,30 +32,30 @@ const menu = ({ business, news, liveshow, home ,search,article,video}) => {
       style={{ marginTop: '30px', padding: '0px' }}
     >
       <div className='navbar' style={{display: 'flex', flexWrap: 'nowrap', overflow: 'scroll'}}>
-        <a className={home && 'activeS'} style={{borderRadius: "5px 0px 0px 5px" ,border:"1px solid gray"}}  href='/'>
+        <Link to='/home' className={home && 'activeS'} style={{borderRadius: "5px 0px 0px 5px" ,border:"1px solid gray"}}  href='/'>
           <i className='fa fa-fw fa-home'></i> Home
-        </a>
-        <a href='/news' className={news && 'activeS'} style={{border:"1px solid gray"}}>
+        </Link>
+        <Link to='/news' className={news && 'activeS'} style={{border:"1px solid gray"}}>
           <i className='fa fa-fw fa-search'></i> News
-        </a>
-        <a href='/business' className={business && 'activeS'} style={{border:"1px solid gray"}}>
+        </Link>
+        <Link to='/business' className={business && 'activeS'} style={{border:"1px solid gray"}}>
           <i className='fa fa-fw fa-user'></i> Business
-        </a>
-        <a href='/liveshow' className={liveshow && 'activeS'} style={{border:"1px solid gray"}}>
+        </Link>
+        <Link to='/liveshow' className={liveshow && 'activeS'} style={{border:"1px solid gray"}}>
           <i className='fa fa-fw fa-search'></i> LiveShow
-        </a>
+        </Link>
         <a href='/news' style={{border:"1px solid gray"}}>
           <i className='fa fa-fw fa-envelope'></i> News
         </a>
-        <a href='/business' style={{border:"1px solid gray"}}>
+        <Link to='/business' style={{border:"1px solid gray"}}>
           <i className='fa fa-fw fa-user'></i> Business
-        </a>
+        </Link>
         <a href='/liveshow' style={{border:"1px solid gray"}}>
           <i className='fa fa-fw fa-search'></i> LiveShow
         </a>
-        <a href='#'  style={{border:"1px solid gray"}}>
+        <Link href='#'  style={{border:"1px solid gray"}}>
           <i className='fa fa-fw fa-envelope'></i> News
-        </a>
+        </Link>
         <a href='#'  style={{borderRadius: "0px 5px 5px 0px" ,border:"1px solid gray"}}>
           <i className='fa fa-fw fa-user'></i> Business
         </a>
@@ -64,9 +67,14 @@ const menu = ({ business, news, liveshow, home ,search,article,video}) => {
         business={business} 
         news={news}
         liveshow={liveshow}
+        path={path}
+        all={all}
         article={article}
         video={video}
        />
+      
+     
+      
     </div>
   );
 };

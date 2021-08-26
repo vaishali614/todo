@@ -8,7 +8,7 @@ import noti from '../../../Images/Assets-LT/Vector.png';
 import Menu from '../searchbar/Menu/menu';
 import Submenu from './Menu/SubMenu/submenu';
 
-const SearchBar = ({ business, news, liveshow, home ,article,video}) => {
+const SearchBar = ({ business, news, liveshow, home ,path,all,article,video}) => {
 
   const [search,setSearch]=useState("");
 
@@ -31,7 +31,7 @@ const SearchBar = ({ business, news, liveshow, home ,article,video}) => {
       </span>
       <input type='text' placeholder='Search news,videos audios and hashtags'  onChange={onChange} onKeyPress={filterOpen} />
       <img  src={noti} className='notify' />
-      <Menu business={business} news={news} liveshow={liveshow} home={home} search={search} article={article} video={video} />
+      <Menu business={business} news={news} liveshow={liveshow} home={home} search={search} path={path} all={all} article={article} video={video}/>
       
     </div>
   );
