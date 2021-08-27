@@ -7,38 +7,75 @@ import CarouselContent from './CarouselContent';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
-const BusinessTop = () => {
+const BusinessTop = ({path,all,article,video}) => {
 
-    const [videoT, setVideoT] = useState([]);
-
-    useEffect(() => {
-      const fetchVideo = async () => {
-        const res = await axios.get('/appapi/lt/category/videos');
-        setVideoT(res.data.data.video);
-        
-      };
+  const [videoT, setVideoT] = useState([]);
+  const [newsT,setNewsT]=useState([]);
+  const [type,setType]=useState([]);
   
-      fetchVideo();
-    }, []);
 
-    const breakPoints=[
-        {width:1,itemsToShow:1},
-        {width:550,itemsToShow:2},
-        {width:760,itemsToShow:3},
-        {width:1200,itemsToShow:4},
-    
-      ]
+  const actualPath=window.location.pathname;
+  
+  const articlePath=path.concat('/article');
+  const videoPath=path.concat('/video')
+ 
+
+  
+ 
+  const fetchData=()=>{
+    const video='/appapi/lt/category/videos';
+    const article='/appapi/lt/category/news';
+
+    const getVideos=axios.get(video);
+    const getArticle=axios.get(article);
+    axios.all([getArticle,getVideos]).then(
+      axios.spread((...allData)=>{
+        const allNews=allData[0].data.data.news;
+        const allVideo=allData[1].data.data.video;
+        setVideoT(allVideo);
+        setNewsT(allNews);
+       
+      })
+    )
+  }
+  useEffect(()=>{
+    fetchData();
+    myFunction();
+   
+  },[actualPath]);
+
+  console.log(videoT);
+  const allT=videoT.concat(newsT);
+  console.log(allT)
+  
+  function myFunction()
+  {
+    let actualPath=window.location.pathname;
+    console.log(actualPath)
+      switch(actualPath){
+        case videoPath:
+          setType(videoT);
+          break;
+        case articlePath:
+          setType(newsT);
+          break;
+        default:
+          setType(newsT)
+          break;
+      }
+  }
  
   return (
     // caraousal
-    <div>
-      <Carousel infiniteLoop useKeyboardArrows autoPlay showArrows={true} showThumbs={false} className="carousel">
-         {videoT.map((item,index)=>(
-             <CarouselContent item={item} index={index}/>
-         ))}
-        </Carousel>
-        
-      </div>
+    <div className="newstop">
+   
+    <Carousel infiniteLoop useKeyboardArrows autoPlay showArrows={true} showThumbs={false} className="carousel">
+        {type.map((item,index)=>(
+        <CarouselContent item={item} index={index} path={path} type={type} videoT={videoT} newsT={newsT}/>
+        ))}
+      </Carousel>
+     
+    </div>
     
   );
 };

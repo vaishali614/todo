@@ -4,6 +4,7 @@ import Story from './story/Story';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import './storybar.css'
+import Stories from 'react-insta-stories';
 
 
 const StoryBar = () => {

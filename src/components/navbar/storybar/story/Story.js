@@ -1,7 +1,22 @@
 import { Redirect } from 'react-router-dom';
+import InnerStory from './innerStory';
 import './story.css';
+import { useHistory } from "react-router-dom";
 
 const Story = ({ image, title, link }) => {
+
+  let history = useHistory();
+
+  console.log(history);
+  const newC=()=>{
+     return(
+      <div>
+          hello
+      </div>
+     )
+  }
+
+
   return (
     <div>
       <div className='outerimg' style={{ marginBottom: '30px' }}>
@@ -17,7 +32,7 @@ const Story = ({ image, title, link }) => {
             marginTop: '5px',
             marginRight: '3px',
           }}
-          onClick={() => window.open(link, '_blank')}
+          onClick={newC}
         />
         <div
           style={{

@@ -6,7 +6,7 @@ import {Link,useRouteMatch} from "react-router-dom"
 import { Condition } from './SubMenu/submenu';
 
 
-const menu = ({ business, news, liveshow, home ,search,path,article,all,video}) => {
+const menu = ({ business, news, liveshow, home ,searchTerm,path,article,all,video}) => {
 
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
