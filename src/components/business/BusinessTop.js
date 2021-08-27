@@ -60,7 +60,7 @@ const BusinessTop = ({path,all,article,video}) => {
           setType(newsT);
           break;
         default:
-          setType(newsT)
+          setType(videoT)
           break;
       }
   }

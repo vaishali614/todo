@@ -1,12 +1,13 @@
 import React from 'react';
 import photo from '../../Images/Assets-LT/photo.jpg'
 import photo2 from '../../Images/Assets-LT/image2.jpg'
+import {NavLink,Route,Switch,useParams} from "react-router-dom"
 
 const LiveshowRight = () => {
   return (
     <div style={{ flex:"1" ,backgroundColor:"white" }} className="container c" >
       <div className="container-fluid" style={{ display: 'flex', justifyContent: 'space-between ', paddingLeft: '0' }}>
-        <div className="schedule">Live Schedule</div>
+        <div className="schedule">लाइव शेड्यूल</div>
         <div style={{color:"#EF4F4F",marginTop:"20px"}}>View Live Schedule</div>
       </div>
       <div className="week container-fluid" style={{ display: 'flex', justifyContent: 'space-between ', overflow: "scroll", paddingLeft: '0' }}>

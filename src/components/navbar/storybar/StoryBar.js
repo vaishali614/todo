@@ -1,10 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Story from './story/Story';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-import './storybar.css'
-import Stories from 'react-insta-stories';
+
 
 
 const StoryBar = () => {
@@ -14,11 +11,12 @@ const StoryBar = () => {
     const story = async () => {
       const res = await axios.get('/appapi/lt/topstories');
       setContent(res.data.data.splice(0, 13));
-      console.log(res.data.data);
+     
     };
 
     story();
   }, []);
+  console.log(content);
 
   return (
     <div className='container-fluid' style={{ backgroundColor: '#F4F4F4' ,marginBottom:"30px"}}>
@@ -33,6 +31,7 @@ const StoryBar = () => {
                 key={item.n_id}
                 title={item.n_title}
                 link={item.n_share_link}
+                largeimage={item.n_large_image}
             />
         ))}
         </div>

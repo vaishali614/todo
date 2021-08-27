@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Businesspage from './pages/Businesspage';
 import NewsPage from './pages/NewsPage';
 import LiveShowPage from './pages/LiveShowPage';
+import Storystyle from './components/navbar/storybar/story/storystyle';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route  path='/news' component={NewsPage}></Route>
         <Route  path='/liveshow' component={LiveShowPage}></Route>
         <Route  path='/home'  component={Home}></Route>
+        <Route path="/story" component={Storystyle}></Route>
       </Switch>
     </BrowserRouter>
   );

@@ -1,18 +1,17 @@
-import { Redirect } from 'react-router-dom';
-import InnerStory from './innerStory';
+
 import './story.css';
 import { useHistory } from "react-router-dom";
+import Storystyle from './storystyle';
 
-const Story = ({ image, title, link }) => {
+const Story = ({ image, title, link,largeimage },props) => {
 
   let history = useHistory();
-
-  console.log(history);
+  console.log(largeimage);
+  
   const newC=()=>{
+    history.push("/story")
      return(
-      <div>
-          hello
-      </div>
+      <Storystyle  image={image} title={title} largeimage={largeimage}/>
      )
   }
 

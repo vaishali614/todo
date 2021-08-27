@@ -33,7 +33,7 @@ const CarouselContentNews = ({type,videoT,newsT,item,index}) => {
                 src={share}
               />*/}
               <i className="fa fa-eye " style={{width:"20px",height:"20px",paddingTop:"2px"}} aria-hidden="true"></i>
-              {item.n_view_count}
+              232
             </div>
   
             <div
@@ -68,7 +68,7 @@ const CarouselContentNews = ({type,videoT,newsT,item,index}) => {
               <li className='l' style={{ marginRight: '30px' }}>
                 {item.n_updated_datetime?.substring(0, 10) || ''}
               </li>
-              <li className='l'>{item.n_duration}</li>
+              <li className='l'>1243</li>
               <li style={{marginLeft:"20px"}}>232</li>
             </div>
             <div

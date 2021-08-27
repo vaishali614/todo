@@ -17,7 +17,7 @@ const menu = ({ business, news, liveshow, home ,searchTerm,path,article,all,vide
     const fetchContent = async () => {
       const res = await axios.get('/appapi/lt/horizontal_menu');
       setContent(res.data.data.horizontal_menu);
-      
+      console.log(res.data.data.horizontal_menu);
     };
     
     fetchContent();
@@ -32,7 +32,8 @@ const menu = ({ business, news, liveshow, home ,searchTerm,path,article,all,vide
       style={{ marginTop: '30px', padding: '0px' }}
     >
       <div className='navbar' style={{display: 'flex', flexWrap: 'nowrap', overflow: 'scroll'}}>
-        <Link to='/home' className={home && 'activeS'} style={{borderRadius: "5px 0px 0px 5px" ,border:"1px solid gray"}}  href='/'>
+        <Link to='/home' className={home && 'activeS'} style={{borderRadius: "5px 0px 0px 5px" ,border:"1px solid gray"}} 
+            onClick={()=>window.onload()}>
           <i className='fa fa-fw fa-home'></i> Home
         </Link>
         <Link to='/news' className={news && 'activeS'} style={{border:"1px solid gray"}}>
